@@ -1,0 +1,66 @@
+{
+  "name": "x-multibyte/laravel-package",
+  "description": "A laravel-package skeleton.",
+  "keywords": [
+    "laravel",
+    "package"
+  ],
+  "type": "laravel-package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roy",
+      "email": "roy@xmultibyte.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "illuminate/support": "^11.0||^12.0",
+    "illuminate/contracts": "^11.0||^12.0"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.14",
+    "pestphp/pest": "^4.0",
+    "pestphp/pest-plugin-arch": "^4.0",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "orchestra/testbench": "^10.0.0||^9.0.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "XMultibyte\\Package\\": "src/",
+      "XMultibyte\\Package\\Database\\Factories\\": "database/factories/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "XMultibyte\\Package\\Tests\\": "tests/",
+      "Workbench\\App\\": "workbench/app/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": "@composer run prepare",
+    "prepare": "@php vendor/bin/testbench package:discover --ansi",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest --coverage",
+    "format": "vendor/bin/pint"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "XMultibyte\\Package\\PackageServiceProvider"
+      ],
+      "aliases": {
+        "Package": "XMultibyte\\Package\\Facades\\Package"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
